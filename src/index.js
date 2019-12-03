@@ -10,6 +10,8 @@ var fs = require("fs");
 let writeStream = fs.createWriteStream("Answers.txt");
 
 async function main() {
+  let start = new Date();
+
   // Q1;
   writeStream.write("--- Question 01 ---\n");
   for (let i = 1; i < 101; i++)
@@ -64,7 +66,9 @@ async function main() {
     }
   }
 
-  writeStream.end();
+  //Execution time logging
+  let end = new Date() - start;
+  console.log('Execution time: %dms', end);
 }
 
 main();
