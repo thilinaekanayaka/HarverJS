@@ -26,23 +26,17 @@ async function main() {
 
   // Q3 - Part A
   writeStream.write("--- Question 03 - Part A ---\n");
-  async function printRandomWord() {
-    for (let i = 1; i < 101; i++)
-      writeStream.write(i + ": " + (await getRandomWord({ withErrors: false })) + "\n");
-  }
-  await printRandomWord();
+  for (let i = 1; i < 101; i++)
+    writeStream.write(i + ": " + (await getRandomWord({ withErrors: false })) + "\n");
 
   // Q3 - Part B
   writeStream.write("--- Question 03 - Part B ---\n");
-  async function printFizzBuzz() {
-    for (let i = 1; i < 101; i++) {
-      if (i % 3 == 0 && i % 5 != 0) writeStream.write(i + ": Fizz\n");
-      else if (i % 5 == 0 && i % 3 != 0) writeStream.write(i + ": Buzz\n");
-      else if (i % 3 == 0 && i % 5 == 0) writeStream.write(i + ": FizzBuzz\n");
-      else writeStream.write(i + ": " + (await getRandomWord({ withErrors: false })) + "\n");
-    }
+  for (let i = 1; i < 101; i++) {
+    if (i % 3 == 0 && i % 5 != 0) writeStream.write(i + ": Fizz\n");
+    else if (i % 5 == 0 && i % 3 != 0) writeStream.write(i + ": Buzz\n");
+    else if (i % 3 == 0 && i % 5 == 0) writeStream.write(i + ": FizzBuzz\n");
+    else writeStream.write(i + ": " + (await getRandomWord({ withErrors: false })) + "\n");
   }
-  await printFizzBuzz();
 
   // Q4 - Part A
   writeStream.write("--- Question 04 - Part A ---\n");
@@ -59,19 +53,16 @@ async function main() {
 
   // Q4 - Part B
   writeStream.write("--- Question 04 - Part B ---\n");
-  async function printFizzBuzzWithError() {
-    for (let i = 1; i < 101; i++) {
-      try {
-        if (i % 3 == 0 && i % 5 != 0) writeStream.write(i + ": Fizz\n");
-        else if (i % 5 == 0 && i % 3 != 0) writeStream.write(i + ": Buzz\n");
-        else if (i % 3 == 0 && i % 5 == 0) writeStream.write(i + ": FizzBuzz\n");
-        else writeStream.write(i + ": " + (await getRandomWord({ withErrors: true })) + "\n");
-      } catch (e) {
-        writeStream.write(i + ": It shouldn't break anything!\n");
-      }
+  for (let i = 1; i < 101; i++) {
+    try {
+      if (i % 3 == 0 && i % 5 != 0) writeStream.write(i + ": Fizz\n");
+      else if (i % 5 == 0 && i % 3 != 0) writeStream.write(i + ": Buzz\n");
+      else if (i % 3 == 0 && i % 5 == 0) writeStream.write(i + ": FizzBuzz\n");
+      else writeStream.write(i + ": " + (await getRandomWord({ withErrors: true })) + "\n");
+    } catch (e) {
+      writeStream.write(i + ": It shouldn't break anything!\n");
     }
   }
-  await printFizzBuzzWithError();
 
   writeStream.end();
 }
