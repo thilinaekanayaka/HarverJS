@@ -22,4 +22,15 @@ for (let i = 1; i < 101; i++) {
 }
 
 //Q3
-console.log("******************** Question 03 ****************************");
+console.log("******************** Question 03 - Part A ****************************");
+for (let i = 1; i < 101; i++) {
+  let promise = new Promise(function(resolve, reject) {
+    resolve(getRandomWord({ withErrors: false }));
+  });
+
+  promise.then(function(value) {
+    console.log(i + ": " + value);
+  });
+}
+
+console.log("******************** Question 03 - Part B ****************************");
