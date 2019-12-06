@@ -10,8 +10,6 @@ var fs = require("fs");
 let writeStream = fs.createWriteStream("Answers.txt");
 
 async function main() {
-  let start = new Date();
-
   // Q1;
   writeStream.write("--- Question 01 ---\n");
   for (let i = 1; i < 101; i++)
@@ -65,10 +63,34 @@ async function main() {
       writeStream.write(i + ": It shouldn't break anything!\n");
     }
   }
-
-  //Execution time logging
-  let end = new Date() - start;
-  console.log('Execution time: %dms', end);
 }
 
 main();
+
+// Bonus Section
+
+const promises = [];
+const words = [];
+
+async function FizzBuzzFast(counter) {
+  if(counter % 3 == 0 && counter % 5 != 0)
+    words[counter] = "Fizz";
+  else if(counter % 5 == 0 && counter % 3 != 0)
+    words[counter] = "Fizz";
+  else if(counter % 3 == 0 && counter % 5 == 0)
+    words[counter] = "Fizz";
+  else
+    words[counter] = await getRandomWord({ slow: true });
+}
+
+async function fastMain() {
+  for (let i = 1; i < 101; i++)
+    promises.push(FizzBuzzFast(i));
+
+  await Promise.all(promises);
+
+  for (const [key, value] of Object.entries(words))
+    console.log(key + ": " + value);
+}
+
+fastMain();
