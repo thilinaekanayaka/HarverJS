@@ -76,9 +76,9 @@ async function FizzBuzzFast(counter) {
   if(counter % 3 == 0 && counter % 5 != 0)
     words[counter] = "Fizz";
   else if(counter % 5 == 0 && counter % 3 != 0)
-    words[counter] = "Fizz";
+    words[counter] = "Buzz";
   else if(counter % 3 == 0 && counter % 5 == 0)
-    words[counter] = "Fizz";
+    words[counter] = "FizzBuzz";
   else
     words[counter] = await getRandomWord({ slow: true });
 }
